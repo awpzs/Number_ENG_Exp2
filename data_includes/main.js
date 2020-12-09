@@ -1,6 +1,6 @@
 PennController.ResetPrefix(null); //Initiates PennController
 var showProgressBar = false;
-PennController.DebugOff()
+//PennController.DebugOff()
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/Number_ENG_Exp2/main/images/")
 PennController.AddHost("https://raw.githubusercontent.com/awpzs/Number_ENG_Exp2/main/images_fillers/")
 
@@ -62,7 +62,8 @@ newTrial("recording_information" ,
         .wait()    
 )
 
-InitiateRecorder("https://langprolab.stir.ac.uk/pcibex/index.php", "Please grant expt.pcibex.net access to your microphone.").label("initRecorder")
+InitiateRecorder("https://localhost/pcibex/index.php", "Please grant expt.pcibex.net access to your microphone.").label("initRecorder")
+//InitiateRecorder("https://langprolab.stir.ac.uk/pcibex/index.php", "Please grant expt.pcibex.net access to your microphone.").label("initRecorder")
 
 Template(
     GetTable("instructions.csv")
@@ -88,7 +89,7 @@ Template(
             newMediaRecorder("recorder", "audio")
                 .record()
             ,
-            newText("inst_read", "<p>Please read the sentence aloud, then click on the sentence to proceed.</p>")
+            newText("inst_read", "<p>Please read the sentence aloud, then click on it to proceed.</p>")
                 .settings.center()
                 .print()
             ,
@@ -109,18 +110,11 @@ Template(
             ,
             clear()
             ,
-            newText("<p>In this example, you could say:</p>")
-                .settings.center()
-                .print()
-            ,
-            newText(variable.target1)
-                .bold()
+            newText("In this example, you could say:&nbsp;")
+                .settings.after(newText(variable.target1).bold())
                 .settings.after(newText("&nbsp;OR&nbsp;"))
                 .settings.after(newText(variable.target2).bold())
-                .settings.center()
-                .print()
-            ,
-            newText("<p>Feel free to vary your expressions.</p>")
+                .settings.after(newText("&nbsp;Feel free to vary your expressions.").bold())
                 .settings.center()
                 .print()
             ,
